@@ -1,4 +1,5 @@
 import { gateway } from "@ai-sdk/gateway";
+import { google } from "@ai-sdk/google";
 import {
   customProvider,
   extractReasoningMiddleware,
@@ -25,6 +26,10 @@ export const myProvider = isTestEnvironment
     })()
   : customProvider({
       languageModels: {
+        // Direct Google API models (free tier supported) - Primary choice
+        "gemini-pro": google("gemini-2.0-flash-exp"),
+        
+        // AI Gateway models (require credit card)
         "chat-model": gateway.languageModel("xai/grok-2-vision-1212"),
         "chat-model-reasoning": wrapLanguageModel({
           model: gateway.languageModel("xai/grok-3-mini"),

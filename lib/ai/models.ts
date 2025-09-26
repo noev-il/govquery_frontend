@@ -1,4 +1,4 @@
-export const DEFAULT_CHAT_MODEL: string = "chat-model";
+export const DEFAULT_CHAT_MODEL: string = "gemini-pro";
 
 export type ChatModel = {
   id: string;
@@ -17,5 +17,10 @@ export const chatModels: ChatModel[] = [
     name: "Grok Reasoning",
     description:
       "Uses advanced chain-of-thought reasoning for complex problems",
+  },
+  {
+    id: "gemini-pro",
+    name: "Gemini 2.0 Flash",
+    description: "Google's latest experimental model (Free tier available)",
   },
 ];
