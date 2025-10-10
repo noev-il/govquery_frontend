@@ -60,6 +60,31 @@ export function AppSidebar({ user }: { user: User | undefined }) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
+        <SidebarMenu>
+          <div className="px-2 py-1">
+            <Link
+              href="/"
+              className="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-muted"
+              onClick={() => setOpenMobile(false)}
+            >
+              💬 Chat
+            </Link>
+            <Link
+              href="/govquery"
+              className="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-muted"
+              onClick={() => setOpenMobile(false)}
+            >
+              🏛️ GovQuery Data
+            </Link>
+            <Link
+              href="/datacommons"
+              className="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-muted"
+              onClick={() => setOpenMobile(false)}
+            >
+              📊 DataCommons Query
+            </Link>
+          </div>
+        </SidebarMenu>
         <SidebarHistory user={user} />
       </SidebarContent>
       <SidebarFooter>{user && <SidebarUserNav user={user} />}</SidebarFooter>

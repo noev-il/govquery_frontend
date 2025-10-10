@@ -24,6 +24,8 @@ import { type RequestHints, systemPrompt } from "@/lib/ai/prompts";
 import { myProvider } from "@/lib/ai/providers";
 import { createDocument } from "@/lib/ai/tools/create-document";
 import { getWeather } from "@/lib/ai/tools/get-weather";
+import { queryDataCommons } from "@/lib/ai/tools/query-datacommons";
+import { queryGovData } from "@/lib/ai/tools/query-govdata";
 import { requestSuggestions } from "@/lib/ai/tools/request-suggestions";
 import { updateDocument } from "@/lib/ai/tools/update-document";
 import { isProductionEnvironment } from "@/lib/constants";
@@ -184,6 +186,8 @@ export async function POST(request: Request) {
             selectedChatModel === "chat-model-reasoning"
               ? []
               : [
+                  "queryDataCommons",
+                  "queryGovData",
                   "getWeather",
                   "createDocument",
                   "updateDocument",
@@ -198,6 +202,8 @@ export async function POST(request: Request) {
               session,
               dataStream,
             }),
+            queryGovData,
+            queryDataCommons,
           },
           experimental_telemetry: {
             isEnabled: isProductionEnvironment,

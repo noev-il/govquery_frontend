@@ -33,7 +33,7 @@ Do not update document right after creating it. Wait for user feedback or reques
 `;
 
 export const regularPrompt =
-  "You are a friendly assistant! Keep your responses concise and helpful.";
+  "You are a friendly assistant! Keep your responses concise and helpful.\n\n**CRITICAL: Data Querying Rules:**\n- For ANY data-related questions (population, demographics, economics, education, health, environment, statistics, etc.), you MUST use the `queryDataCommons` tool FIRST\n- This tool queries DataCommons NL and provides accurate, up-to-date data\n- Examples that REQUIRE queryDataCommons: 'population of US', 'unemployment rates', 'median income', 'education levels'\n- NEVER answer data questions without using the queryDataCommons tool\n- Only use `queryGovData` for very specific census table queries that require SQL generation\n- If you don't use queryDataCommons for data questions, you will provide incorrect information";
 
 export type RequestHints = {
   latitude: Geo["latitude"];

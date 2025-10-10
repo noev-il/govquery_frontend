@@ -17,6 +17,31 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Allow DataCommons API without authentication
+  if (pathname.startsWith("/api/datacommons")) {
+    return NextResponse.next();
+  }
+
+  // Allow GovQuery API without authentication for testing
+  if (pathname.startsWith("/api/govquery")) {
+    return NextResponse.next();
+  }
+
+  // Allow chat API without authentication for testing
+  if (pathname.startsWith("/api/chat")) {
+    return NextResponse.next();
+  }
+
+  // Allow DataCommons page without authentication for testing
+  if (pathname.startsWith("/datacommons")) {
+    return NextResponse.next();
+  }
+
+  // Allow GovQuery page without authentication for testing
+  if (pathname.startsWith("/govquery")) {
+    return NextResponse.next();
+  }
+
   const token = await getToken({
     req: request,
     secret: process.env.AUTH_SECRET,
