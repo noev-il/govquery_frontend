@@ -64,3 +64,21 @@ export interface SQLParseResult {
   error?: string;
   formatted_sql?: string;
 }
+
+export interface ExecuteRequest {
+  sql: string;
+  max_rows?: number;
+}
+
+export interface ExecuteResponse {
+  success: boolean;
+  rows: Array<Record<string, any>>;
+  row_count: number;
+  columns: string[];
+  execution_time_ms: number;
+  error?: string;
+  applied_limit: boolean;
+  statement_timeout_ms: number;
+  query_id?: string;
+  query_metadata?: Record<string, any>;
+}

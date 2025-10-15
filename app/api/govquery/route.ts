@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { govQueryClient, GovQueryClient } from "@/lib/govquery/client";
-import { QueryRequest } from "@/lib/govquery/types";
+import { QueryRequest, ExecuteRequest } from "@/lib/govquery/types";
 
 // Create a backend client for server-side API routes
 const backendClient = new GovQueryClient({

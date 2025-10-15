@@ -1,7 +1,7 @@
 // GovQuery API Client
 // TypeScript client for communicating with the GovQuery Python backend
 
-import { QueryRequest, QueryResponse, SchemaInfo, HealthResponse, ApiError, GovQueryConfig, SQLParseResult } from "./types";
+import { QueryRequest, QueryResponse, SchemaInfo, HealthResponse, ApiError, GovQueryConfig, SQLParseResult, ExecuteRequest, ExecuteResponse } from "./types";
 import { govQueryCache, GovQueryCache } from "./cache";
 
 export class GovQueryClient {
@@ -165,6 +165,20 @@ export class GovQueryClient {
       this.makeRequest<SQLParseResult>("/parse-sql", {
         method: "POST",
         body: JSON.stringify({ sql }),
+      })
+    );
+  }
+
+  async executeSQL(sql: string, maxRows?: number): Promise<ExecuteResponse> {
+    const request: ExecuteRequest = {
+      sql,
+      max_rows: maxRows
+    };
+    
+    return this.retryRequest(() =>
+      this.makeRequest<ExecuteResponse>("/execute", {
+        method: "POST",
+        body: JSON.stringify(request),
       })
     );
   }
